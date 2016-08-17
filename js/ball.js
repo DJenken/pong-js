@@ -6,13 +6,12 @@ function Ball(domElement){
 
     //Ball is the game ball, it has things like:
     //Position
-    this.position = new v2(0,0);
+    this.position   = new v2(0,0);
+    this.velocity   = new v2(1, 0);
     //Dom Element
-    this.element = domElement;
-    this.velocity = new v2(1, 0);
-    //Speed
+    this.element    = domElement;
     //Size
-    //Pos
+    this.size       = new v2(domElement.width(), domElement.height());
 
     //And it checks for collision with:
 
@@ -37,13 +36,6 @@ Ball.prototype.update = function(){
 
 Ball.prototype.checkCollision = function(other){
 
-    //If other is wall
-        //Bounce
 
-    //If other is Paddle
-        //Calculate angle based on paddle velocity
-        //Bounce
 
-    //If other is EndZone
-        //Score
 };

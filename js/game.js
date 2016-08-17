@@ -9,16 +9,21 @@ var game = (function() {
 
         var self = this;
         //has two players
-        this.p0 = new Player();
+        this.p0 = new Player(0);
 
-        this.p1 = new Player();
+        this.p1 = new Player(1);
 
         this.ball = new Ball($(".ball"));
+
+        this.score0 = $("#score0");
+        this.score1 = $("#score1");
 
     }
 
     Game.prototype.init = function(){
         this.initClickHandlers();
+        this.p0.init();
+        this.p1.init();
         this.update();
     };
 
@@ -39,6 +44,7 @@ var game = (function() {
 
     Game.prototype.run = function(){
         self = this;
+
         function frame(){
             self.update();
             self.render();
@@ -50,18 +56,31 @@ var game = (function() {
 
     Game.prototype.update = function(){
         //Update:
-        //Score
+        this.p0.update();
+        this.p1.update();
         //Ball position
         this.ball.update();
-        //Paddle Positions
-
         //Check for collisions
 
 
     };
 
     Game.prototype.render = function() {
+        this.score0.html(this.p0.score);
+        this.score1.html(this.p1.score);
+    };
 
+    Game.prototype.collisionCheck = function(){
+
+        //If ball collides with wall
+            //Bounce
+
+        //If ball collides with Paddle
+            //Calculate angle based on paddle velocity
+            //Bounce
+
+        //If ball collides with EndZone
+            //Score
     };
 
     return new Game();
