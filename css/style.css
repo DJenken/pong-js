@@ -50,10 +50,24 @@ body{
     display:inline-block;
     text-align: center;
 }
-
 #score0{
 
 }
 #score1{
 
+}
+
+/*Endzones*/
+.endzone{
+    position:absolute;
+    top:0;
+    height: 100%;
+    width: 25px;
+    background-color: red;
+}
+#end0{
+left: 0;
+}
+#end1{
+right: 0;
 }
