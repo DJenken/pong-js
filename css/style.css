@@ -19,8 +19,8 @@ body{
 .paddle{
     position:           absolute;
     background-color:   black;
-    height:             4em;
-    width:              1em;
+    height:             96px;
+    width:              16px;
 }
 #pad0{
     left: 25px;
@@ -54,6 +54,9 @@ body{
     font-weight: bold;
     font-size: 200%;
     text-align: center;
+}
+.score:hover{
+    cursor: default;
 }
 #score0{
 
@@ -90,7 +93,7 @@ left: 0;
 right: 0;
 }
 
-/*Buttons*/
+/*Buttons and dialogues*/
 #start-btn{
     position:absolute;
     width: 100px;
@@ -106,7 +109,23 @@ right: 0;
     text-align: center;
 
 }
-
 #start-btn:hover{
-    cursor: pointer;
+    cursor: default;
+}
+
+#game-over{
+    position:absolute;
+    width: 250px;
+    height: 60px;
+    margin-left: -125px;
+    left:   50%;
+    top: 40%;
+    color: white;
+    background-color: black;
+    font-family: "Courier New";
+    font-size: 150%;
+    text-align: center;
+}
+#game-over:hover{
+    cursor: default;
 }

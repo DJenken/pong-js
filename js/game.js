@@ -34,9 +34,9 @@ var game = (function() {
 
     Game.prototype.init = function(){
         this.initClickHandlers();
+        $("#game-over").css("display", "none");
         this.p0.init();
         this.p1.init();
-        this.update();
     };
 
     Game.prototype.initClickHandlers = function(){
@@ -49,6 +49,11 @@ var game = (function() {
             $(this).css("display", "none");
         });
 
+        //End Game Div
+        $("#game-over").on('click', function(){
+            self.newGame();
+            $(this).css("display", "none");
+        });
     };
 
     Game.prototype.run = function(){
@@ -69,10 +74,10 @@ var game = (function() {
         this.p1.update();
         //Ball position
         this.ball.update();
-        this.collisionCheck();
         //Check for collisions
-
-
+        this.collisionCheck();
+        //Check if game won
+        this.winCheck();
     };
 
     Game.prototype.render = function() {
@@ -83,25 +88,35 @@ var game = (function() {
             this.score1.html("" + 0 + this.p1.score);
         }
     };
-
+    //Check if game has been won
+    Game.prototype.winCheck = function(){
+        if(this.p0.score >= 10){
+            this.endGame(0);
+        }
+        if(this.p1.score >= 10){
+            this.endGame(1);
+        }
+    };
+    //Check for collision
     Game.prototype.collisionCheck = function(){
         this.ball.checkCollision(this.collidables);
+        //Needed a to do game logic stuff depending on the collided object
+        //hence the 'hit' property
+        //If the ball hit an endzone, do score stuff
         if(this.ball.hit.hasClass("endzone")){
             if(this.ball.hit.is("#end-right")){
-                //p0 scores
-                this.p0.score++;
-                //p0 serves to p1, right
+                this.p0.addScore();
                 this.ball.reset(1, this.ball.velocity.y);
             }else if (this.ball.hit.is("#end-left")){
                 //p1 scores
-                this.p1.score++;
+                this.p1.addScore();
                 //p1 serves to p0, left
                 this.ball.reset(-1, this.ball.velocity.y);
             }
-
+        //If the ball hit a paddle, bounce, and spin it if applicable
         }else if(this.ball.hit.hasClass("paddle")){
 
-            //Put spin on the ball
+            //Apply spin to the ball
             if(this.ball.hit.is("#pad0")){
                 if(this.p0.paddle.moveUp){
                     this.ball.velocity.y -= local.spin;
@@ -121,9 +136,22 @@ var game = (function() {
         }
     };
 
+    Game.prototype.newGame = function(){
+        this.p0.newGame();
+        this.p1.newGame();
+        this.ball.velocity = new v2(1,1);
+    };
+
+    Game.prototype.endGame = function(playerId){
+        //Stop the ball
+        this.ball.velocity.x = 0;
+        this.ball.velocity.y = 0;
+        //Display the game over div
+        $("#game-over").html("Player " + (playerId + 1) + ' wins! </br> Play Again?');
+        $("#game-over").css("display", "block");
+    };
+
     return new Game();
-
-
 })();
 
 //This is Main

@@ -17,9 +17,11 @@ function Ball(domElement){
 
 
 }
+
 Ball.prototype.init = function(){
 
 };
+
 Ball.prototype.update = function(){
     //Move the ball
     this.move();

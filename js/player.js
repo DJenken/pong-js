@@ -16,6 +16,11 @@ Player.prototype.init = function(){
     this.initControls();
 };
 
+Player.prototype.newGame = function(){
+    this.score = 0;
+    this.paddle.newGame();
+};
+
 Player.prototype.initControls = function(){
     var thePlayer = this;
 
@@ -129,6 +134,14 @@ Player.prototype.initControls = function(){
             break;
     }
 
+};
+
+Player.prototype.addScore = function(){
+    //player scores
+    this.score++;
+    //player paddle shrinks
+    this.paddle.shrink(4);
+    this.paddle.moveSpeed += 0.5;
 };
 
 Player.prototype.update = function(){

@@ -9,14 +9,22 @@ function Paddle(domElement){
     //Paddle Has:
     //Move Speed
     this.moveSpeed  = 5.0;
+    this.initialSpeed = this.moveSpeed;
     this.moveUp     = false;
     this.moveDown   = false;
     this.moveLeft   = false;
     this.moveRight  = false;
     //Size in units
-    this.size       = new v2(domElement.width(), domElement.height());
+    this.size           = new v2(domElement.width(), domElement.height());
+    this.initialSize    = new v2(this.size.x, this.size.y);
 
 }
+
+Paddle.prototype.newGame = function(){
+    this.moveSpeed = this.initialSpeed;
+    this.size = this.initialSize;
+    this.element.height(this.size.y);
+};
 
 Paddle.prototype.update = function(){
     //If the movement flags are set, do the movement
@@ -55,11 +63,11 @@ Paddle.prototype.doMoveDown     = function(){
 
 //Grow and shrink
 Paddle.prototype.grow           = function(amount){
-    this.height += amount;
+    this.size.y += amount;
     this.element.height(this.size.y);
 };
 
 Paddle.prototype.shrink         = function(amount){
-    this.height -= amount;
+    this.size.y -= amount;
     this.element.height(this.size.y);
 };
