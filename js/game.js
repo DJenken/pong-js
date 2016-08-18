@@ -20,12 +20,12 @@ var game = (function() {
 
         //Populate the list of collidables for collision checking within the ball
         this.collidables = [];
-        //this.collidables.push(this.p0.paddle.element);
+        this.collidables.push(this.p0.paddle.element);
         this.collidables.push(this.p1.paddle.element);
-        //this.collidables.push($("#end-left"));
-        //this.collidables.push($("#end-right"));
-        //this.collidables.push($("#wall-top"));
-        //this.collidables.push($("#wall-bottom"));
+        this.collidables.push($("#end-left"));
+        this.collidables.push($("#end-right"));
+        this.collidables.push($("#wall-top"));
+        this.collidables.push($("#wall-bottom"));
 
     }
 

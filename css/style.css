@@ -64,10 +64,10 @@ body{
     height:     25px;
 }
 #wall-top{
-    top:    0;
+    top:    -25px;
 }
 #wall-bottom{
-    bottom: 0;
+    bottom: -25px;
 }
 
 /*Endzones*/
