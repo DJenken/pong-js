@@ -1,14 +1,18 @@
 /**
  * Created by Dylan Jenken on 17/08/2016.
  */
+
+//Ball 'class'
 function Ball(domElement){
 
-    //Dom Element
+    //The ball's Dom Element
     this.element    = domElement;
-    //Ball is the game ball, it has things like:
+
+    //Ball is the game's ball, it has things like:
     //Position
     this.pos        = new v2(this.element.position().left, this.element.position().top);
     this.initialPos = this.pos;
+    //Velocity
     this.velocity   = new v2(1, 1);
     //Size
     this.size       = new v2(domElement.width(), domElement.height());
@@ -22,9 +26,9 @@ Ball.prototype.init = function(){
 
 };
 
-Ball.prototype.update = function(){
-    //Move the ball
-    this.move();
+Ball.prototype.update = function(dt){
+    //Move the ball, passing delta time down to be used
+    this.move(dt);
 };
 
 Ball.prototype.reset = function(velx, vely){
@@ -34,10 +38,10 @@ Ball.prototype.reset = function(velx, vely){
     this.velocity = new v2(velx * 2, 1);
 };
 
-Ball.prototype.move = function(){
+Ball.prototype.move = function(dt){
     var pos = this.element.position();
-    pos.left += this.velocity.x;
-    pos.top  += this.velocity.y;
+    pos.left += this.velocity.x * dt;
+    pos.top  += this.velocity.y * dt;
     this.element.css({ left : pos.left, top : pos.top });
     this.pos = new v2(pos.left, pos.top);
 };

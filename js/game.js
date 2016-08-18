@@ -2,25 +2,24 @@
  * Created by Dylan Jenken on 17/08/2016.
  */
 
-
+//Main game closure
 var game = (function() {
 
+    //Declare a local object for private variables
     var local = {};
 
+
     function Game(){
-
-        var self = this;
-        //has two players
+        //Two Players
         this.p0 = new Player(0);
-
         this.p1 = new Player(1);
-
+        //A Ball
         this.ball = new Ball($(".ball"));
-
+        //And two scores
         this.score0 = $("#score0");
         this.score1 = $("#score1");
 
-        //Populate the list of collidables for collision checking within the ball
+        //Populate a list of collidables for the ball's collision checking
         this.collidables = [];
         this.collidables.push($("#end-left"));
         this.collidables.push($("#end-right"));
@@ -29,7 +28,10 @@ var game = (function() {
         this.collidables.push($("#wall-top"));
         this.collidables.push($("#wall-bottom"));
 
+        //Private variable declaration and assignment
+        //Amount of spin on the ball when it hits a movign paddle
         local.spin = 1.5;
+        local.time = 0;
     }
 
     Game.prototype.init = function(){
@@ -60,27 +62,35 @@ var game = (function() {
         self = this;
 
         function frame(){
-            self.update();
-            self.render();
+            //Calculate a new delta time every frame
+            var now = new Date().getTime();
+            var dt = now - (local.time || now);
+            //Multiply for a time scale that isn't light speed
+            dt *= 0.1;
+            local.time = now;
+
+            //Update and render, passing in delta time
+            self.update(dt);
+            self.render(dt);
             requestAnimationFrame(frame);
         }
 
         requestAnimationFrame(frame);
     };
 
-    Game.prototype.update = function(){
+    Game.prototype.update = function(dt){
         //Update:
-        this.p0.update();
-        this.p1.update();
+        this.p0.update(dt);
+        this.p1.update(dt);
         //Ball position
-        this.ball.update();
+        this.ball.update(dt);
         //Check for collisions
         this.collisionCheck();
         //Check if game won
         this.winCheck();
     };
 
-    Game.prototype.render = function() {
+    Game.prototype.render = function(dt) {
         if(this.p0.score < 10) {
             this.score0.html("" + 0 + this.p0.score);
         }

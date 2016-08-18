@@ -16,6 +16,12 @@ Player.prototype.init = function(){
     this.initControls();
 };
 
+//Main update loop, called by game
+Player.prototype.update = function(dt){
+    //Update my paddle, passing delta time down the update chain
+    this.paddle.update(dt);
+};
+
 Player.prototype.newGame = function(){
     this.score = 0;
     this.paddle.newGame();
@@ -142,10 +148,4 @@ Player.prototype.addScore = function(){
     //player paddle shrinks
     this.paddle.shrink(4);
     this.paddle.moveSpeed += 0.5;
-};
-
-Player.prototype.update = function(){
-    this.paddle.update();
-    //Test that score is rendering correctly
-    //this.score++;
 };
