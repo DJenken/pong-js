@@ -9,7 +9,7 @@ var game = (function() {
     var local = {};
 
 
-    function Game(){
+    function GameSingleton(){
         //Two Players
         this.p0 = new Player(0);
         this.p1 = new Player(1);
@@ -34,14 +34,14 @@ var game = (function() {
         local.time = 0;
     }
 
-    Game.prototype.init = function(){
+    GameSingleton.prototype.init = function(){
         this.initClickHandlers();
         $("#game-over").css("display", "none");
         this.p0.init();
         this.p1.init();
     };
 
-    Game.prototype.initClickHandlers = function(){
+    GameSingleton.prototype.initClickHandlers = function(){
         var self = this;
         //handle setup up UI buttons like Start, Restart, MainMenu, etc.
 
@@ -58,7 +58,7 @@ var game = (function() {
         });
     };
 
-    Game.prototype.run = function(){
+    GameSingleton.prototype.run = function(){
         self = this;
 
         function frame(){
@@ -78,7 +78,7 @@ var game = (function() {
         requestAnimationFrame(frame);
     };
 
-    Game.prototype.update = function(dt){
+    GameSingleton.prototype.update = function(dt){
         //Update:
         this.p0.update(dt);
         this.p1.update(dt);
@@ -90,7 +90,7 @@ var game = (function() {
         this.winCheck();
     };
 
-    Game.prototype.render = function(dt) {
+    GameSingleton.prototype.render = function(dt) {
         if(this.p0.score < 10) {
             this.score0.html("" + 0 + this.p0.score);
         }
@@ -99,7 +99,7 @@ var game = (function() {
         }
     };
     //Check if game has been won
-    Game.prototype.winCheck = function(){
+    GameSingleton.prototype.winCheck = function(){
         if(this.p0.score >= 10){
             this.endGame(0);
         }
@@ -108,7 +108,7 @@ var game = (function() {
         }
     };
     //Check for collision
-    Game.prototype.collisionCheck = function(){
+    GameSingleton.prototype.collisionCheck = function(){
         this.ball.checkCollision(this.collidables);
         //Needed a to do game logic stuff depending on the collided object
         //hence the 'hit' property
@@ -146,13 +146,13 @@ var game = (function() {
         }
     };
 
-    Game.prototype.newGame = function(){
+    GameSingleton.prototype.newGame = function(){
         this.p0.newGame();
         this.p1.newGame();
         this.ball.velocity = new v2(1,1);
     };
 
-    Game.prototype.endGame = function(playerId){
+    GameSingleton.prototype.endGame = function(playerId){
         //Stop the ball
         this.ball.velocity.x = 0;
         this.ball.velocity.y = 0;
@@ -161,11 +161,10 @@ var game = (function() {
         $("#game-over").css("display", "block");
     };
 
-    return new Game();
+    return new GameSingleton();
 })();
 
 //This is Main
 $(document).ready(function(){
     game.init();
-    //game.run();
 });
