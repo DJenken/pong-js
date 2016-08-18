@@ -1,5 +1,6 @@
 body{
     margin:0;
+    background-color: black;
 }
 
 #game-area{
@@ -7,10 +8,11 @@ body{
     position: absolute;
     width: 400px;
     height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin:0;
-    background-color: #d6d6d6;
+    top: 50%;
+    left:   50%;
+    margin-top: -150px;
+    margin-left: -200px;
+    background-color: white;
 }
 
 /*Paddles*/
@@ -32,22 +34,25 @@ body{
     position:           absolute;
     background-color:   black;
     height:             1em;
-    width:              1em;
-    left:               50%;
+    width:              16px;
+    left:               192px;
+    top:                142px;
     right:              50%;
 }
 
 /*Scores*/
 .scoreboard{
     display:table;
-    width:  100%;
     margin: auto;
     width:  200px;
     left:   50%;
+    margin-left: 100px;
     right:  50%;
 }
 .score{
-    display:    inline-block;
+    font-family: "Courier New";
+    font-weight: bold;
+    font-size: 200%;
     text-align: center;
 }
 #score0{
@@ -76,11 +81,32 @@ body{
     top:        0;
     height:     100%;
     width:      25px;
-    background-color: red;
+    background-color: black;
 }
 #end-left{
 left: 0;
 }
 #end-right{
 right: 0;
+}
+
+/*Buttons*/
+#start-btn{
+    position:absolute;
+    width: 100px;
+    height: 36px;
+    left:   50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -18px;
+    color: white;
+    background-color: black;
+    font-family: "Courier New";
+    font-size: 200%;
+    text-align: center;
+
+}
+
+#start-btn:hover{
+    cursor: pointer;
 }

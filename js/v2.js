@@ -1,5 +1,5 @@
 /**
- * Created by djenken on 17/08/2016.
+ * Created by Dylan Jenken on 17/08/2016.
  */
 
 function v2(vx, vy){

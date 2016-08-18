@@ -1,5 +1,5 @@
 /**
- * Created by djenken on 17/08/2016.
+ * Created by Dylan Jenken on 17/08/2016.
  */
 
 
@@ -23,8 +23,8 @@ Paddle.prototype.update = function(){
     //If the movement flags are set, do the movement
     if(this.moveUp)      { this.doMoveUp();      }
     if(this.moveDown)    { this.doMoveDown();    }
-    if(this.moveLeft)    { this.doMoveLeft();    }
-    if(this.moveRight)   { this.doMoveRight();   }
+    if(this.moveLeft)    { /*this.doMoveLeft();*/}
+    if(this.moveRight)   {/*this.doMoveRight();*/}
 };
 
 //Paddle can:
@@ -48,12 +48,13 @@ Paddle.prototype.doMoveDown     = function(){
 
         this.element.css({ left : pos.left, top : pos.top });
 };
-Paddle.prototype.doMoveRight    = function(){
+/*Paddle.prototype.doMoveRight    = function(){
 
 };
 Paddle.prototype.doMoveLeft     = function(){
 
 };
+*/
 //Change Size
 Paddle.prototype.grow           = function(amount){
     this.height += amount;
