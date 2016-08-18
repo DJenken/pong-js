@@ -16,13 +16,13 @@ function Paddle(domElement){
     this.moveRight  = false;
     //Size in units
     this.size           = new v2(domElement.width(), domElement.height());
-    this.initialSize    = new v2(this.size.x, this.size.y);
+    this.initialSize    = new v2(domElement.width(), domElement.height());
 
 }
 
 Paddle.prototype.newGame = function(){
     this.moveSpeed = this.initialSpeed;
-    this.size = this.initialSize;
+    this.size = new v2(this.initialSize.x, this.initialSize.y);
     this.element.height(this.size.y);
 };
 
