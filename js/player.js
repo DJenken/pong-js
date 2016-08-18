@@ -4,13 +4,11 @@
 
 //Player Class
 var Player = (function(){
-    function PlayerClass(id){
 
+    function PlayerClass(id){
         //Each Player has:
         this.id = id;
-        //Score
         this.score = 0;
-        //Paddle
         this.paddle = new Paddle($("#pad" + id + ""));
     }
 
@@ -33,7 +31,7 @@ var Player = (function(){
     PlayerClass.prototype.initControls = function(){
         var thePlayer = this;
 
-        //Init Controls based on player ID
+        //Init Control handlers based on player ID
         switch(thePlayer.id){
             case 0:
                 //W A S D

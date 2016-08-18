@@ -8,7 +8,6 @@ var game = (function() {
     //Declare a local object for private variables
     var local = {};
 
-
     function GameSingleton(){
         //Two Players
         this.p0 = new Player(0);

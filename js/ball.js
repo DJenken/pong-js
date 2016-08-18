@@ -4,6 +4,7 @@
 
 //Ball Class
 var Ball = (function(){
+
     function BallClass(domElement){
 
         //The ball's Dom Element
