@@ -7,16 +7,15 @@ function Paddle(domElement){
 
     this.element = domElement;
     //Paddle Has:
-    //Position
-
     //Move Speed
-    this.moveSpeed  = 2.0;
+    this.moveSpeed  = 5.0;
     this.moveUp     = false;
     this.moveDown   = false;
     this.moveLeft   = false;
     this.moveRight  = false;
     //Size in units
-    this.size       = 2.0;
+    this.height     = this.element.height();
+    this.width      = this.element.width();
 
 }
 
@@ -57,9 +56,11 @@ Paddle.prototype.doMoveLeft     = function(){
 };
 //Change Size
 Paddle.prototype.grow           = function(amount){
-
+    this.height += amount;
+    this.element.height(this.height);
 };
 
 Paddle.prototype.shrink         = function(amount){
-    //Size -= shrink amount
+    this.height -= amount;
+    this.element.height(this.height);
 };

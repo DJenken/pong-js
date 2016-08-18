@@ -18,6 +18,15 @@ var game = (function() {
         this.score0 = $("#score0");
         this.score1 = $("#score1");
 
+        //Populate the list of collidables for collision checking within the ball
+        this.collidables = [];
+        //this.collidables.push(this.p0.paddle.element);
+        this.collidables.push(this.p1.paddle.element);
+        //this.collidables.push($("#end-left"));
+        //this.collidables.push($("#end-right"));
+        //this.collidables.push($("#wall-top"));
+        //this.collidables.push($("#wall-bottom"));
+
     }
 
     Game.prototype.init = function(){
@@ -60,6 +69,7 @@ var game = (function() {
         this.p1.update();
         //Ball position
         this.ball.update();
+        this.ball.checkCollision(this.collidables);
         //Check for collisions
 
 

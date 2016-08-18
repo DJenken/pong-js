@@ -133,5 +133,6 @@ Player.prototype.initControls = function(){
 
 Player.prototype.update = function(){
     this.paddle.update();
-    this.score++;
+    //Test that score is rendering correctly
+    //this.score++;
 };
