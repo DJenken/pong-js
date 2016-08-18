@@ -12,11 +12,7 @@ function Ball(domElement){
     this.velocity   = new v2(1, 1);
     //Size
     this.size       = new v2(domElement.width(), domElement.height());
-
-    //And it checks for collision with:
-    //Paddles
-    //Walls
-    //Endzones
+    //Whatever the ball is currently colliding with, $() if nothing;
     this.hit        = $();
 
 
