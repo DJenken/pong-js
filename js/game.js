@@ -2,7 +2,7 @@
  * Created by Dylan Jenken on 17/08/2016.
  */
 
-//Main game closure
+//Main game singleton
 var game = (function() {
 
     //Declare a local object for private variables
@@ -164,7 +164,7 @@ var game = (function() {
     return new GameSingleton();
 })();
 
-//This is Main
+//This is the main app entry point
 $(document).ready(function(){
     game.init();
 });

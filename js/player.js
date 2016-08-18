@@ -1,6 +1,8 @@
 /**
  * Created by Dylan Jenken on 17/08/2016.
  */
+
+//Player Class
 var Player = (function(){
     function PlayerClass(id){
 

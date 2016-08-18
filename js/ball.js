@@ -2,7 +2,7 @@
  * Created by Dylan Jenken on 17/08/2016.
  */
 
-//Ball 'class'
+//Ball Class
 var Ball = (function(){
     function BallClass(domElement){
 
@@ -24,7 +24,7 @@ var Ball = (function(){
     }
 
     BallClass.prototype.init = function(){
-
+        //Do any necessary ball init stuff here
     };
 
     BallClass.prototype.update = function(dt){
@@ -39,6 +39,7 @@ var Ball = (function(){
         this.velocity = new v2(velx * 2, 1);
     };
 
+    //move the ball one step
     BallClass.prototype.move = function(dt){
         var pos = this.element.position();
         pos.left += this.velocity.x * dt;
@@ -48,7 +49,7 @@ var Ball = (function(){
     };
 
     BallClass.prototype.checkCollision = function(collidables){
-        //check against every collidable thing
+        //check against every collidable thing if the ball has collided
         for(var i = 0; i < collidables.length; i++)
         {
             var col = {};
@@ -61,21 +62,17 @@ var Ball = (function(){
             (this.pos.x + this.size.x) > col.pos.x &&
             this.pos.x < (col.pos.x + col.size.x)){
                 this.hit = collidables[i];
-                //if it hits a...
+                //if it hits a thing it can bounce off, do the bounce...
                 if(collidables[i].hasClass("wall")) {
                     //Reverse direction y
                     this.velocity.y = -this.velocity.y;
-                } else if(collidables[i].hasClass("ball")) {
-                    //reverse direction y and x
-
                 } else if(collidables[i].hasClass("paddle")) {
                     //reverse x direction
                     this.velocity.x = -this.velocity.x;
-                } else if(collidables[i].hasClass("endzone")){
                 }
                 break;
             }else{
-                //Didn't hit anything
+                //Didn't hit anything, so set hit to something that isn't hitable
                 this.hit = $();
             }
 

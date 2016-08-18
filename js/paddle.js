@@ -1,7 +1,7 @@
 /**
  * Created by Dylan Jenken on 17/08/2016.
  */
-
+//Paddle Class
 var Paddle = (function(){
 
     function PaddleClass(domElement){
